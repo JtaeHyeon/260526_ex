@@ -42,3 +42,24 @@ s.add(123456);
 for (const c of s) {
   console.log(c);
 }
+// get은 키로 뭐 하는거라 딱히 없음
+
+// set vs set
+// 자료구조 set : 1. 밸류가 곧 키인(중복 제거 연산), 2. 집합 연산을 지원하는(상황에 따라서 지원하지 않는 경우도 있음) 자료구조 (부분집합(차,합 집합 등))
+// 일반적인 프로그래밍에서의 set: 접근자 setter (get/set에서의 set), 설정/대입 등
+//til로 정리하기
+
+// set되지 않은 키 호출 했을 때
+const o = {};
+console.log("o.a", o.a); // undefined
+const mmm = new Map();
+console.log("mmm.get('a')", mmm.get("a")); //undefined
+// Java, Python -> 없는 키를 호출 했을 때의 대응이 다르다
+// Java (get): 없는 것 호출하면 null
+// getOrDefault... (이것도 til에서 정리하기)
+// Python ([]): key Error
+// Python (get) :None
+// setdefault...
+
+//has로 체크를 해서 true,false 만들거나 비교연산자 등 테크닉으로 truthy, falsy, undefined 대응하는 ?? 연산자 등을 활용
+
