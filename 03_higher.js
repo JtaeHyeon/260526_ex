@@ -78,12 +78,66 @@ console.log(
 console.log(a2.map((v, i) => (i % 2 == 0 ? v ** 2 : 0)));
 
 //truthy, falsy로 처리
-console.log(a2.map((v, i) => (!(i % 2) ? v ** 2 : 0))); //숏 코딩. 너무 좋아하지는 말자. 
+console.log(a2.map((v, i) => (!(i % 2) ? v ** 2 : 0))); //숏 코딩. 너무 좋아하지는 말자.
 
 // 배열 -> for문. 압축되지 않은 표현식 -> (함수화) -> 배열 내장 메서드(고차함수_ + 고급 연산자들을 사용해서 표현식 압축
 
 //여기에 비트연산자 등 까지 해서 만들면 닌자코딩이 된다 -> 나만 알아볼 수 있다.
 //어쨌든 사람이 디버깅하고 수정하고 알아봐야하는데, 너무 어렵게 만들어두면 유지보수 등이 불가능해진다
 
-console.log(a2);//map은 원본에 영향을 안미침. 복사본을 만든다 [...arr] <- fn으로 하나씩 다시 작업한 것
+console.log(a2); //map은 원본에 영향을 안미침. 복사본을 만든다 [...arr] <- fn으로 하나씩 다시 작업한 것
 
+//filter - map 이랑 비슷한데 / 결과가 무조건 true/false -> True 인것만 남겨서 신규 배열을 만든다
+console.log(a2.filter((v) => v % 2 == 0));
+console.log(a2.filter((v) => v % 3 == 0));
+console.log(a2.filter((_, i) => i !== 0 && i % 3 == 0));
+
+// 특수한 for문 형태로 보면 됨.
+// 별도의 변수/상수로 새로운 리턴값을 지정해줘야함.(scope, 구현상의 편의 등...)
+
+//reduce 잘해요? (구조분해할당이랑 비슷한 느낌. 잘해보임)
+
+// Reduce -> 배열을 1개의 값으로 변환
+const a4 = [1, 10, 5, 4, 7];
+//1. 숫자 연산
+//forEach, map, filter => v, i, a / sort -> e1, e2
+// fn(reduce -> prev, cur, i, arr) 이전거, 현재거, 인덱스, 배열
+// fn(acc(누산기), cur(현재))
+const sum2 = a4.reduce((prev, cur) => {
+  //최초의 직전값(prev)은 0번째 인덱스 -> 1번째 인덱스(cur) 연산
+  console.log("prev", prev, "cur", cur);
+  return prev + cur;
+});
+console.log(sum2);
+// lodash- 요새는 많이 안쓰지만 내장되어있지 않은 여러 기능들을 담은 라이브러리.
+
+const prod = a4.reduce((prev, cur) => {
+  console.log("prev", prev, "cur", cur);
+  return prev * cur;
+});
+console.log(prod);
+
+console.log(
+  a4.reduce((prev, cur) => {
+    console.log("prev", prev, "cur", cur);
+    return prev + cur;
+  }, 100), //100은 초기값(acc)으로 0번 인덱스 대신 준 것.
+);
+//reduce(fn(prev, cur, i, a), [초기값])
+//reduce는 배열을 '한 개의 값'으로 변환
+
+console.log(
+  a4.reduce((prev, cur) => {
+    console.log("prev", prev, "cur", cur);
+    prev.push(cur ** 2);
+    return prev;
+  }, []),
+);
+
+console.log(
+  a4.reduce((prev, cur) => {
+    console.log("prev", prev, "cur", cur);
+    if (cur % 2 == 0) prev.push(cur);
+    return prev;
+  }, []),
+);
