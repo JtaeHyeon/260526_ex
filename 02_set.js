@@ -63,3 +63,15 @@ console.log("mmm.get('a')", mmm.get("a")); //undefined
 
 //has로 체크를 해서 true,false 만들거나 비교연산자 등 테크닉으로 truthy, falsy, undefined 대응하는 ?? 연산자 등을 활용
 
+// ... 연산자를 사용을 해서...
+
+const oo = { a: 1234, b: 12345 };
+console.log([...Object.entries(oo)]); // [ [ 'a', 1234 ], [ 'b', 12345 ] ] 구조분해할당해서..(이것도 정리하기)
+
+const aa = ["a", "a", "a", "d", "d"];
+const sss = new Set(aa);
+const aa2 = [...sss]; //set은 원래는 for문으로 push해서 넣던가 해야하는데..
+//분해할당을 시켜서 추가해주면 처리할 수 있따
+console.log(aa, aa2);
+
+//set이 있고, 기존 자료구조 map 등이랑 어떻게 다른디, 어떻게 대응되느닞? 뭐라는지 못들었다 이것도 정리해주셈 ㅎ
