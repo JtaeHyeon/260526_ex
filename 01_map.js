@@ -48,7 +48,25 @@ console.log(map.has("cc"));
 
 console.log(map);
 
-// for (const c of map){
+for(const c of Object.entries(o)){
+    console.log(c);
+}
+
+//delete o[프로퍼티명]
+map.delete("aa"); // 삭제하는 것도 delete 따로 있다.
+console.log(map); 
+
+//객체였으면 Object.* 외부 유틸리티를 썼어야하는...
+console.log(map.entries());
+console.log(map.keys());
+console.log(map.values());
+
+
+for (const c of map){
 //     // iterable하다.
 //     // 변환 과정등을 거지치 않아도 순회할 수 있다(iterable하다)
-// }
+    console.log(c);
+}
+
+console.log(Object.values(o).length) //객체는 자체적인 크기관련 함수가 없음
+console.log(map.size) // map은 자체적으로 크기를 알 수 있다.
